@@ -1,0 +1,9 @@
+.Gallery {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	-ms-align-items: flex-start;
+	align-items: flex-start;
+	list-style: none;
+	background-color: #b6c0d2;
+}

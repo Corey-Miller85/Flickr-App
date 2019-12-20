@@ -1,0 +1,18 @@
+.Photo {
+	width: 220px;
+	height: 165px;
+	overflow: hidden;
+	margin-bottom: 15px;
+	box-shadow: black 4px 4px 12px;
+	border-radius: 10px;
+}
+
+.Photo-img {
+	width: 100%;
+	transform: scale(1.25);
+	transition: transform 1.25s;
+}
+
+.Photo:hover .Photo-img {
+	transform: scale(1.65);
+}

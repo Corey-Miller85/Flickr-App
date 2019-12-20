@@ -1,26 +1,81 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
+import axios from "axios";
+import "./App.css";
+import apiKey from "./Components/config";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Gallery from "./Components/Gallery";
+import SearchedGallery from "./Components/SearchedGallery";
+import NavBar from "./Components/NavBar";
+import SearchBar from "./Components/SearchBar";
+
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			forest: [],
+			city: [],
+			space: []
+		};
+	}
+
+	getPhotos = query => {
+		axios
+			.get(
+				`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
+			)
+			.then(response =>
+				this.setState({
+					[query]: response.data.photos.photo
+				})
+			)
+			.then(console.log("ran full get request"));
+	};
+
+	componentDidMount() {
+		this.getPhotos("forest");
+		this.getPhotos("city");
+		this.getPhotos("space");
+	}
+
+	render() {
+		return (
+			<div>
+				<SearchBar getPhotos={this.getPhotos} />
+				<NavBar />
+				<Switch>
+					<Route
+						path='/forest'
+						render={props => (
+							<Gallery {...props} photos={this.state.forest} />
+						)}
+					/>
+					<Route
+						path='/city'
+						render={props => (
+							<Gallery {...props} photos={this.state.city} />
+						)}
+					/>
+					<Route
+						path='/space'
+						render={props => (
+							<Gallery {...props} photos={this.state.space} />
+						)}
+					/>
+					<Route
+						path='/:query'
+						render={props => (
+							<SearchedGallery
+								{...props}
+								photos={this.state.query}
+								getPhotos={this.getPhotos}
+							/>
+						)}
+					/>
+				</Switch>
+			</div>
+		);
+	}
 }
 
 export default App;

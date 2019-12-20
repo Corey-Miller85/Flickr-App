@@ -1,0 +1,22 @@
+.NavBar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #313c53;
+	background-color: #b6c0d2;
+}
+
+.NavBar li {
+	display: flex;
+	list-style: none;
+	text-decoration: none;
+}
+
+.NavBar-Link {
+	text-decoration: none;
+	background-color: #9cff00;
+	color: #313c53;
+	padding: 1em;
+	border-radius: 0.25em;
+	font-weight: 600;
+}
