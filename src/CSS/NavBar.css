@@ -1,22 +1,18 @@
-.NavBar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	color: #313c53;
-	background-color: #b6c0d2;
-}
-
 .NavBar li {
-	display: flex;
-	list-style: none;
-	text-decoration: none;
+	width: 100%;
+	margin-bottom: 1em;
 }
 
-.NavBar-Link {
-	text-decoration: none;
-	background-color: #9cff00;
-	color: #313c53;
-	padding: 1em;
-	border-radius: 0.25em;
-	font-weight: 600;
+.NavBar a {
+	display: block;
+	background: #438bbd;
+	border-radius: 3px;
+	padding: 5px;
+	color: #fff;
+}
+
+.NavBar .active,
+.NavBar a:hover,
+.search-form button:hover {
+	background-color: #275270;
 }

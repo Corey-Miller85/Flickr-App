@@ -1,19 +1,28 @@
-.Gallery {
-	list-style: none;
-	background-color: #b6c0d2;
-}
-
 .Gallery ul {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	-ms-align-items: flex-start;
 	align-items: flex-start;
 }
 
 .Gallery ul li {
-	width: 275px;
-	height: 180px;
+	width: 220px;
+	height: 165px;
 	overflow: hidden;
 	margin-bottom: 15px;
+}
+
+.Gallery ul img {
+	width: 100%;
+	transform: scale(1.25);
+	transition: transform 1.25s;
+}
+
+.Gallery li:hover img {
+	transform: scale(1.65);
+}
+
+.Gallery .not-found {
+	width: 100%;
 }
