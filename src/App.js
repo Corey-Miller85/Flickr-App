@@ -29,7 +29,9 @@ class App extends Component {
 					[query]: response.data.photos.photo
 				})
 			)
-			.then(console.log("ran full get request"));
+			.catch(error => {
+				console.log("Error fetching and parsing data", error);
+			});
 	};
 
 	componentDidMount() {
@@ -70,7 +72,7 @@ class App extends Component {
 						)}
 					/>
 					<Route
-						path='/:query'
+						path='/query=:query'
 						render={props => (
 							<SearchedGallery
 								{...props}
