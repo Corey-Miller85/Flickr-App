@@ -4,13 +4,13 @@ import "../CSS/Photo.css";
 class Photo extends Component {
 	render() {
 		return (
-			<div className='Photo'>
+			<li className='Photo'>
 				<img
 					className='Photo-img'
 					src={this.props.url}
 					alt={this.props.alt}
 				/>
-			</div>
+			</li>
 		);
 	}
 }

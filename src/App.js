@@ -8,6 +8,7 @@ import Gallery from "./Components/Gallery";
 import SearchedGallery from "./Components/SearchedGallery";
 import NavBar from "./Components/NavBar";
 import SearchBar from "./Components/SearchBar";
+import Error404 from "./Components/Error404";
 
 class App extends Component {
 	constructor(props) {
@@ -15,11 +16,29 @@ class App extends Component {
 		this.state = {
 			forest: [],
 			city: [],
-			space: []
+			space: [],
+			photos: []
 		};
 	}
 
+	//General Photo Get Request.
 	getPhotos = query => {
+		axios
+			.get(
+				`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
+			)
+			.then(response =>
+				this.setState({
+					photos: response.data.photos.photo
+				})
+			)
+			.catch(error => {
+				console.log("Error fetching and parsing data", error);
+			});
+	};
+
+	//Gets photos for NavLink Items, stores them in their own state, as to not have to fetch again.
+	getHardCodedPhotos = query => {
 		axios
 			.get(
 				`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
@@ -34,10 +53,11 @@ class App extends Component {
 			});
 	};
 
+	//Gets the hardcorded photos and stores them in respective states.
 	componentDidMount() {
-		this.getPhotos("forest");
-		this.getPhotos("city");
-		this.getPhotos("space");
+		this.getHardCodedPhotos("forest");
+		this.getHardCodedPhotos("city");
+		this.getHardCodedPhotos("space");
 	}
 
 	render() {
@@ -76,11 +96,12 @@ class App extends Component {
 						render={props => (
 							<SearchedGallery
 								{...props}
-								photos={this.state.query}
+								photos={this.state.photos}
 								getPhotos={this.getPhotos}
 							/>
 						)}
 					/>
+					<Route component={Error404} />
 				</Switch>
 			</div>
 		);

@@ -1,36 +1,15 @@
 import React, { Component } from "react";
-import axios from "axios";
-import apiKey from "./config";
+import "../CSS/SearchedGallery.css";
 import Photo from "./Photo";
 
 class Gallery extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			photos: []
-		};
-	}
-
+	//load fetch photos when mounted
 	componentDidMount() {
-		this.getPhotos(this.props.match.params.query);
+		this.props.getPhotos(this.props.match.params.query);
 	}
-
-	getPhotos = query => {
-		axios
-			.get(
-				`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
-			)
-			.then(response =>
-				this.setState({
-					photos: response.data.photos.photo
-				})
-			)
-			.then(console.log("ran full get request"));
-	};
-
+	//render photos
 	render() {
-		let photos = this.state.photos.map(item => {
+		let photos = this.props.photos.map(item => {
 			let farm = item.farm;
 			let server = item.server;
 			let id = item.id;
@@ -38,12 +17,18 @@ class Gallery extends Component {
 			let title = item.title;
 			return (
 				<Photo
+					key={id}
+					id={id}
 					url={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
 					alt={title}
 				/>
 			);
 		});
-		return <div>{photos}</div>;
+		return (
+			<div className='Gallery'>
+				<ul>{photos}</ul>
+			</div>
+		);
 	}
 }
 

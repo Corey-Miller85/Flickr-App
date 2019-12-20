@@ -11,15 +11,19 @@ class Gallery extends Component {
 			let secret = item.secret;
 			let title = item.title;
 			return (
-				<li>
-					<Photo
-						url={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
-						alt={title}
-					/>
-				</li>
+				<Photo
+					key={id}
+					id={id}
+					url={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
+					alt={title}
+				/>
 			);
 		});
-		return <div className='Gallery'>{photos}</div>;
+		return (
+			<div className='Gallery'>
+				<ul>{photos}</ul>
+			</div>
+		);
 	}
 }
 

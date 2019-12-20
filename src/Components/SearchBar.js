@@ -11,7 +11,7 @@ class SearchBar extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSearch = this.handleSearch.bind(this);
 	}
-
+	//Pushes to history, then fetches photos, then resets value of search bar.
 	handleSearch(evt) {
 		evt.preventDefault();
 		this.props.history.push(`/query=${this.state.searchValue}`);

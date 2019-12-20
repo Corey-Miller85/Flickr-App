@@ -8,7 +8,7 @@ class NavBar extends Component {
 			<div className='NavBar'>
 				<h1>Flikr Search App</h1>
 				<li>
-					<NavLink className='NavBar-Link' exact to='/trees'>
+					<NavLink className='NavBar-Link' exact to='/forest'>
 						Pictures of Trees
 					</NavLink>
 				</li>
