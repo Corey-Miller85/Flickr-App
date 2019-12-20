@@ -8,32 +8,17 @@ class NavBar extends Component {
 			<div className='NavBar'>
 				<h1>Flikr Search App</h1>
 				<li>
-					<NavLink
-						className='NavBar-Link'
-						exact
-						to='/trees'
-						onClick={() => this.props.getPhotos("trees")}
-					>
+					<NavLink className='NavBar-Link' exact to='/trees'>
 						Pictures of Trees
 					</NavLink>
 				</li>
 				<li>
-					<NavLink
-						className='NavBar-Link'
-						exact
-						to='/city'
-						onClick={() => this.props.getPhotos("city")}
-					>
+					<NavLink className='NavBar-Link' exact to='/city'>
 						Pictures of Cities
 					</NavLink>
 				</li>
 				<li>
-					<NavLink
-						className='NavBar-Link'
-						exact
-						to='/space'
-						onClick={() => this.props.getPhotos("streams")}
-					>
+					<NavLink className='NavBar-Link' exact to='/space'>
 						Pictures of Space
 					</NavLink>
 				</li>

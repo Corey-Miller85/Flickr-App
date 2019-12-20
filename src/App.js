@@ -41,9 +41,16 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<SearchBar getPhotos={this.getPhotos} />
 				<NavBar />
+				<SearchBar getPhotos={this.getPhotos} />
 				<Switch>
+					<Route
+						exact
+						path='/'
+						render={props => (
+							<Gallery {...props} photos={this.state.forest} />
+						)}
+					/>
 					<Route
 						path='/forest'
 						render={props => (
